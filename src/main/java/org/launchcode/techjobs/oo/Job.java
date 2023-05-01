@@ -38,7 +38,9 @@ public class Job {
         return Objects.hash(getId());
     }
 
-    // Getters
+    /*
+    Getters
+     */
     public int getId() {
         return id;
     }
@@ -62,7 +64,9 @@ public class Job {
         return coreCompetency;
     }
 
-    // Setters
+    /*
+     Setters
+     */
     public void setName(String name) {
         this.name = name;
     }
