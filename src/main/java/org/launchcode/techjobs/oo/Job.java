@@ -37,6 +37,7 @@ public class Job {
     public int hashCode() {
         return Objects.hash(getId());
     }
+
     // Getters
     public int getId() {
         return id;
