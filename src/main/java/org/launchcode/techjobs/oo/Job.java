@@ -1,5 +1,7 @@
 package org.launchcode.techjobs.oo;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Objects;
 
 public class Job {
@@ -26,6 +28,36 @@ public class Job {
     }
 
     @Override
+    public String toString() {
+        String jobString = "";
+
+        if (isEmpty()) {
+            jobString += "\nOOPS! This job does not seem to exist.\n";
+        }
+
+        else {
+            ArrayList<String> fields = new ArrayList<>(Arrays.asList(String.valueOf(id), name, employer.toString(), location.toString(), positionType.toString(), coreCompetency.toString()));
+
+            for (int i = 0; i < fields.size(); i++) {
+                String field = fields.get(i);
+                if (field.isEmpty()) {
+                    fields.set(i, "Data not available");
+                }
+            }
+
+            jobString = String.format(
+            "\nID: %s\n" +
+            "Name: %s\n" +
+            "Employer: %s\n" +
+            "Location: %s\n" +
+            "Position Type: %s\n" +
+            "Core Competency: %s\n", fields.get(0), fields.get(1), fields.get(2), fields.get(3), fields.get(4), fields.get(5));
+        }
+
+        return jobString;
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Job)) return false;
@@ -38,6 +70,10 @@ public class Job {
         return Objects.hash(getId());
     }
 
+    public boolean isEmpty() {
+        return (name == null || name.isEmpty()) && (employer == null || employer.toString().isEmpty()) && (location == null || location.toString().isEmpty()) && (positionType == null || positionType.toString().isEmpty()) && (coreCompetency == null || coreCompetency.toString().isEmpty());
+    }
+
     /*
     Getters
      */
@@ -45,7 +81,10 @@ public class Job {
         return id;
     }
     public String getName() {
-        return name;
+        if (name.isEmpty())
+            return "Data not available";
+        else
+            return name;
     }
 
     public Employer getEmployer() {
